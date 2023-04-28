@@ -52,13 +52,14 @@ return {
     build = "cargo build --release",
   }),
   for_clojure_files({
+    -- Do not load conjure for filetypes. It is not useful that way.
     "Olical/conjure",
     keys = {
-      { "<localleader>cc", ":ConjureConnect<CR>", mode = "n", desc = "Conjure Connect" },
+      { "<leader>cc", ":ConjureConnect<CR>", mode = "n", desc = "Conjure Connect" },
     },
     config = function(_, _)
       require("which-key").register({
-        ["<localleader>c"] = { name = "+conjure" },
+        ["<leader>c"] = { name = "+clojure" },
       })
     end,
   }),

@@ -5,14 +5,19 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  -- add gruvbox
-  -- { "ellisonleao/gruvbox.nvim" },
+  -- add One dark
+  {
+    "navarasu/onedark.nvim",
+    opts = {
+      style = "dark",
+    },
+  },
 
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "onedark",
     },
   },
 
@@ -178,7 +183,7 @@ return {
       },
 
       -- this will set for all commands, even :w, which is not desirable
-      -- TODO: find a fix for this.
+      -- TODO: find a way to display command output in cmdline.
       --
       -- messages = {
       --  view = "messages",
@@ -271,6 +276,7 @@ return {
     },
     opts = {
       options = {
+        theme = "onedark",
         component_separators = { left = "│", right = "│" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
