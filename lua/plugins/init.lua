@@ -13,11 +13,16 @@ return {
     },
   },
 
+  -- Add alabaseter theme
+  {
+    "p00f/alabaster.nvim",
+  },
+
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "alabaster",
     },
   },
 
@@ -37,17 +42,6 @@ return {
     cmd = "SymbolsOutline",
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = true,
-  },
-
-  -- override nvim-cmp and add cmp-emoji
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-    end,
   },
 
   -- change some telescope options and a keymap to browse plugin files
@@ -119,8 +113,12 @@ return {
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
   { import = "lazyvim.plugins.extras.lang.typescript" },
 
-  -- following the approach by lazyvim, I have modularized my language-specifuc configurations.
+  -- following the approach by lazyvim, I have modularized my language-specific configurations.
   { import = "plugins.langs.clojure" },
+  { import = "plugins.langs.cc" },
+
+  -- Aid for writing
+  { import = "plugins.extra.wiki" },
 
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
@@ -147,6 +145,18 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+
+      opts.sources = cmp.config.sources({
+        { name = "buffer" },
+        { name = "emoji" },
+        { name = "nvim_lsp" },
+        { name = "path" },
+      })
+
+      opts.completion = vim.tbl_deep_extend("force", opts.completion, {
+        -- use <C-space> to complete manually
+        autocomplete = false,
+      })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -181,12 +191,8 @@ return {
       cmdline = {
         view = "cmdline",
       },
-
-      -- this will set for all commands, even :w, which is not desirable
-      -- TODO: find a way to display command output in cmdline.
-      --
       -- messages = {
-      --  view = "messages",
+      --  enabled = false,
       -- },
 
       popupmenu = {
@@ -276,7 +282,7 @@ return {
     },
     opts = {
       options = {
-        theme = "onedark",
+        theme = "alabaster",
         component_separators = { left = "│", right = "│" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
@@ -309,5 +315,22 @@ return {
         },
       },
     },
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = {
+      on_init = function(_, _)
+        -- some kind of method is required to set a suitable offsetencoding for null-ls
+        -- clients to be compatible with other major lsp client.
+        -- new_client.offset_encoding = "utf-32"
+        -- print(vim.inspect(new_client))
+      end,
+    },
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
   },
 }
