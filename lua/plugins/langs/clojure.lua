@@ -9,20 +9,10 @@ end
 return {
 
   -- add treesitter
-  {
-    names.treesitter,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "clojure" })
-    end,
-  },
+  util.fn.ensure_treesitters({ "clojure" }),
 
   -- ensure clojure_lsp is installed.
-  {
-    names.mason,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "clojure-lsp" })
-    end,
-  },
+  util.fn.ensure_mason({ "clojure-lsp" }),
 
   -- setup lsp server
   {
