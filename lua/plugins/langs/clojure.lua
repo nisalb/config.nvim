@@ -18,7 +18,9 @@ return {
   {
     names.lspconfig,
     opts = {
-      clojure_lsp = {},
+      servers = {
+        clojure_lsp = {},
+      },
     },
   },
 
