@@ -19,3 +19,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.g.maplocalleader = ","
   end,
 })
+
+-- unregister ' and ` from mini.pairs for some filetypes
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = augroup("unmap_quote_and_syntax_quote"),
+  pattern = util.fn.merge_lists({ util.ft.clojure }),
+  callback = function()
+    vim.cmd([[
+      inoremap <buffer> ' '
+      inoremap <buffer> ` `
+    ]])
+  end,
+})
