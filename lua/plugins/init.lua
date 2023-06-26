@@ -208,15 +208,15 @@ return {
       local dashboard = require("alpha.themes.dashboard")
       local logo = [[
  ███████████             ███     ██████   ███               █████
-░░███░░░░░███           ░░░     ███░░███ ░░░               ░░███ 
- ░███    ░███   ██████  ████   ░███ ░░░  ████   ██████   ███████ 
- ░██████████   ███░░███░░███  ███████   ░░███  ███░░███ ███░░███ 
- ░███░░░░░███ ░███████  ░███ ░░░███░     ░███ ░███████ ░███ ░███ 
- ░███    ░███ ░███░░░   ░███   ░███      ░███ ░███░░░  ░███ ░███ 
+░░███░░░░░███           ░░░     ███░░███ ░░░               ░░███
+ ░███    ░███   ██████  ████   ░███ ░░░  ████   ██████   ███████
+ ░██████████   ███░░███░░███  ███████   ░░███  ███░░███ ███░░███
+ ░███░░░░░███ ░███████  ░███ ░░░███░     ░███ ░███████ ░███ ░███
+ ░███    ░███ ░███░░░   ░███   ░███      ░███ ░███░░░  ░███ ░███
  █████   █████░░██████  █████  █████     █████░░██████ ░░████████
 ░░░░░   ░░░░░  ░░░░░░  ░░░░░  ░░░░░     ░░░░░  ░░░░░░   ░░░░░░░░
 
-                "Learning requires inefficiency" 
+                "Learning requires inefficiency"
                                        - Rich Hickey
       ]]
 
@@ -254,7 +254,7 @@ return {
     event = "VimEnter",
     keys = {
       { "<leader>tt", ":ToggleTerm direction=horizontal<CR>", mode = "n", desc = "Open a horizontal(-) terminal" },
-      { "<leader>tv", ":ToggleTerm direction=vertical<CR>", mode = "n", desc = "Open a vertical(|) terminal" },
+      { "<leader>tv", ":ToggleTerm direction=vertical<CR>",   mode = "n", desc = "Open a vertical(|) terminal" },
     },
     opts = {
       size = function(term)
